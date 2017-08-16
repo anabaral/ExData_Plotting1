@@ -8,10 +8,13 @@ powdata <- read.csv("household_power_consumption.txt", sep=";", header=TRUE, na.
 powdata <- powdata[powdata$Date=="1/2/2007" | powdata$Date == "2/2/2007",]
 
 # plot data
+powdata$datetime <- strptime(
+  paste(as.Date(powdata$Date, "%d/%m/%Y"), 
+        powdata$Time), 
+  "%Y-%m-%d %H:%M:%S")
+
 png("plot3.png", width=480,height=480)
-plot(as.POSIXct(
-        paste(as.Date(powdata$Date, "%d/%m/%Y"), 
-        powdata$Time)), 
+plot(powdata$datetime, 
      powdata$Sub_metering_1, 
      type="l", ylab = "Energy sub metering", xlab="")
 points(as.POSIXct(
