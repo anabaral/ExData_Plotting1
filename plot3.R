@@ -17,14 +17,10 @@ png("plot3.png", width=480,height=480)
 plot(powdata$datetime, 
      powdata$Sub_metering_1, 
      type="l", ylab = "Energy sub metering", xlab="")
-points(as.POSIXct(
-        paste(as.Date(powdata$Date, "%d/%m/%Y"), 
-        powdata$Time)), 
+points(powdata$datetime, 
       powdata$Sub_metering_2, 
       col="red", type="l")
-points(as.POSIXct(
-        paste(as.Date(powdata$Date, "%d/%m/%Y"), 
-        powdata$Time)), 
+points(powdata$datetime, 
       powdata$Sub_metering_3, 
       col="blue", type="l")
 legend("topright", 
